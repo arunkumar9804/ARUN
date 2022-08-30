@@ -10,8 +10,10 @@
 <body bgcolor="blue">
     <center>
     <div style="background-color:aqua;width:300px;margin-top:100px;padding-top:40px;padding-bottom:50px">
-    <form action="registercheck/">  
+    <form action="{% url 'register_page'%}" method="post">
+        {%csrf_token%}  
         <h2>register</h2>
+        <font color="red">{{na}}</font><br>
         <input name="uname" type="text" placeholder="username" style="width:200px;height:25px;margin:5px;"" required"><br>
         <input name="fname" type="text" placeholder="firstname" style="width:200px;height:25px;margin:5px;"" required"><br>
         <input name="lname" type="text" placeholder="lastname" style="width:200px;height:25px;margin:5px;"" required"><br>

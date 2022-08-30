@@ -10,12 +10,16 @@
 <body bgcolor="blue">
     <center>
     <div style="background-color:aqua;width:300px;margin-top:200px;padding-top:40px;padding-bottom:50px">
-    <form action="logincheck/">
+    <form action="{% url 'login_page' %}" method="post">
+
+        {%csrf_token%}
         <h2>login</h2>
         <input name="uname" type="text" placeholder="username" style="width:200px;height:25px;margin:5px;"required><br>
         <input name="pname" type="password" placeholder="password" style="width:200px;height:25px;margin:5px;"required><br><br>
         <button type="submit" style="width:200px;height:20px;color:white;background-color:green"> submit</button>
         </form>
+        <br>
+        <font color="red">{{msg}}</font>
     </div>
     </center>
 
