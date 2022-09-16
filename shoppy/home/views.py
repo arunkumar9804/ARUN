@@ -1,9 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
+from product.models import fashion_collection
 a="php"
 n="testing"
 def index(request):
-    return render(request,"index.html")
+    pro=fashion_collection.objects.all()
+    print(pro)
+    return render(request,"index.html",{"pro":pro})
 
 def samp(request):
         return render(request,"test.html",{'l':a,'m':n})
@@ -52,7 +55,12 @@ def register(request):
  
     else:
         return render(request,'register.html')
-       
+
+def logout(request):
+    auth.logout(request)
+    return redirect(request,"test.html") 
+
+
 
  
 

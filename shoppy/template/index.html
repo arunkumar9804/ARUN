@@ -124,11 +124,20 @@
                                     <a class="nav-link" href="products.html">Products</a>
                                  </li>
                                  <li class="nav-item">
+                                    
+                                    {% if user.is_authenticated %}
+                                    <a class="nav-link" href="logout/">logout</a>
+                                 </li
+                                 {% else %}
+                                 <li class="nav-item">
                                     <a class="nav-link" href="login/">login</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="register/">register</a>
+                                    
+                                     {% endif %}
                                  </li>
+                                 >
                                  <li class="nav-item">
                                     <a class="nav-link" href="contact.html">Contact Us</a>
                                  </li>
@@ -157,7 +166,7 @@
             <div class="row">
                <div class="col-md-8">
                   <div class="text-bg">
-                     <h1> <span class="blodark"> Romofyi </span> <br>Trands 2019</h1>
+                     <h1> <span class="blodark"> shoppy </span> <br>Trands 2022</h1>
                      <p>A huge fashion collection for ever </p>
                      <a class="read_more" href="#">Shop now</a>
                   </div>
@@ -227,88 +236,20 @@
             </div>
             <div class="row">
             <div class="product_main">
-             
+                  {% for i in pro %}
                   <div class="project_box ">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/shoes1.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
+                     <div class="dark_white_bg" ><img width="250px"  src="{{i.image.url}}" alt="#"/></div>
+                     <h2><b></b>{{i.name}}</h2>
+                     <div class="col-md-12">
+                        <a class="read_more" href="about?id={{i.id}}">See More</a>
+                     </div>
                   </div>
+                  {% endfor %}
+                  <h2>hello world</h2>
             
              
-                  <div class="project_box ">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/shoes2.png' %}" alt="#"/></div>
-                     <h3 >Short Openwork Cardigan $120.00</h3>
-                  </div>
+                  
                
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/shoes3.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-              
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/shoes4.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-              
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/shoes5.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-              
-            
-                  <div class="project_box ">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/tisat1.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-              
-                  <div class="project_box ">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/tisat2.png' %}" alt="#"/></div>
-                     <h3 >Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/tisat3.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/tisat4.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/tisat5.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-            
-                  <div class="project_box ">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/mix1.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-                  <div class="project_box ">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/mix2.png' %}" alt="#"/></div>
-                     <h3 >Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/mix3.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-              
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/mix4.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-               
-                  <div class="project_box">
-                     <div class="dark_white_bg" ><img  src="{% static 'images/mix5.png' %}" alt="#"/></div>
-                     <h3>Short Openwork Cardigan $120.00</h3>
-                  </div>
-              
-               <div class="col-md-12">
-                  <a class="read_more" href="#">See More</a>
-               </div>
             </div>
             </div>
          </div>
