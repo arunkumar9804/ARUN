@@ -228,28 +228,31 @@
             </div>
             <h1>COMMENT BOX</h1>
             <div class="comment-box">
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
-               <p>arun &nbsp; <b>good product &nbsp;</b><small>19-9-2022 &nbsp</small></p>
+               {% if key1.comments.all %}
+               {% for cmt in key1.comments.all %}
+               <p>{{cmt.name}} &nbsp; <b>{{cmt.msg}}&nbsp;</b><small>{{cmt.date}}</small ></p>
+               {% endfor %}
+               {% else %}
+               <h2>there is no comment here......</h2>
+               {% endif %}
                
               
             </div>
+            
+            <form action="{% url 'review' %}" method="post">
+               {% csrf_token %}
+               {% if user.is_authenticated %}
             <div class="Review-box">
-               <textarea placeholder="enter the review here"></textarea>
-               <button>send</button>
+               <textarea placeholder="enter the review here" name="msg"></textarea>
+               <input type="hidden" name="pro" value="{{key1.id}}">
+               <input type="hidden" name="user" value="{{user.username}}">
+               <button type="submit">send</button>
             </div>
+            {% endif %}
+         
+         
+            </form>
+
 
                
                
