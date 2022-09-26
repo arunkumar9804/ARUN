@@ -5,7 +5,6 @@ a="php"
 n="testing"
 def index(request):
     pro=fashion_collection.objects.all()
-    print(pro)
     return render(request,"index.html",{"pro":pro})
 
 def samp(request):
