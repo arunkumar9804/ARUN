@@ -1,11 +1,22 @@
+from urllib import response
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from product.models import fashion_collection
 a="php"
 n="testing"
 def index(request):
-    pro=fashion_collection.objects.all()
-    return render(request,"index.html",{"pro":pro})
+     if request.method=='POST':
+        pname=request.POST['search']
+        pro=fashion_collection.objects.filter(name__istartswith=pname)
+     else:
+        pro=fashion_collection.objects.all()
+        if 'username'in request.COOKIES:
+            key1=request.COOKIES['username']
+            return render(request,"index.html",{"pro":pro,'key1':key1})
+        else:
+            return render(request,"index.html",{"pro":pro})
+
+     
 
 def samp(request):
         return render(request,"test.html",{'l':a,'m':n})
@@ -17,7 +28,9 @@ def login(request):
         user=auth.authenticate(username=name,password=pas)
         if user is not None:
              auth.login(request,user)
-             return redirect("/")
+             responce=redirect('/')
+             responce.set_cookie('username',name)
+             return responce
         else:
             msg="invalid password and username"
             return render(request,"login.html",{"msg":msg})
@@ -57,7 +70,9 @@ def register(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect("/") 
+    response=redirect("/")
+    response.delete_cookie('username')
+    return response 
 
 
 
