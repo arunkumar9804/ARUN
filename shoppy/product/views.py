@@ -1,16 +1,21 @@
 from django.shortcuts import render,redirect
 
+
 from .models import comment_box, fashion_collection
 from django.http.response import JsonResponse
+from django.core.cache import cache
 
 def about(request):
-    if request.method=='POST':
-        pro_name=request.POST['search']
-        pro=fashion_collection.objects.get(name=pro_name)
+    id=request.GET['id']
+    if cache.get(id):
+        pro=cache.get(id)
+        print('DATA FROM CACHE')
     else:
-        id=request.GET['id']
         pro=fashion_collection.objects.get(id=id)
-    return render(request,"about.html",{'key1':pro})    
+        cache.set(id,pro)
+        print('DATA FROM DATABASE')
+    return render(request,"about.html",{'key1':pro})
+
 
 def comment(request):
     name=request.POST['user']
